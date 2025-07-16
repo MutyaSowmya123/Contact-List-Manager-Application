@@ -16,12 +16,12 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const db = await dbPromise;
-  const { name, email } = req.body;
+  const { name, email, title, address } = req.body;
 
   if (!name || !email) return res.status(400).json({ error: 'Name and email required' });
 
   try {
-    await db.run(`INSERT INTO contacts (name, email) VALUES (?, ?)`, [name, email]);
+    await db.run(`INSERT INTO contacts (name, email, title, address) VALUES (?, ?, ?, ?)`, [name, email, title, address]);
     res.status(201).json({ message: 'Contact added' });
   } catch (err) {
     if (err.code === 'SQLITE_CONSTRAINT') {
@@ -43,5 +43,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 
 export default router;

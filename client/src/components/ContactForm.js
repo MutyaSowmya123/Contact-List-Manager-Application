@@ -15,6 +15,20 @@ const ContactForm = ({ form, setForm, onSubmit }) => (
       onChange={(e) => setForm({ ...form, email: e.target.value })}
       required
     />
+    <input
+      placeholder="title"
+      type="title"
+      value={form.title}
+      onChange={(e) => setForm({ ...form, title: e.target.value })}
+      required
+    />
+    <input
+      placeholder="address"
+      type="address"
+      value={form.address}
+      onChange={(e) => setForm({ ...form, address: e.target.value })}
+      required
+    />
     <button type="submit">Add Contact</button>
   </form>
 );
